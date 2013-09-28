@@ -39,3 +39,5 @@
 ;; RHTML configurations
 (add-hook 'rhtml-mode-hook
      	  (lambda () (rinari-launch)))
+
+(add-hook 'ruby-mode-hook (lambda () (autopair-global-mode -1)))
