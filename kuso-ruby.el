@@ -14,6 +14,13 @@
 ;;    You should have received a copy of the GNU General Public License
 ;;    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;; Configuring rbenv
+(require 'rbenv)
+;(global-rbenv-mode)
+
+(add-hook 'ruby-mode-hook
+     	  'global-rbenv-mode)
+
 ;; Ruby mode configurations
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
