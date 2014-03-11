@@ -35,11 +35,47 @@
 	     (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
 ;; Inf Ruby configuration
+;(require 'inf-ruby)
 (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
-(autoload 'inf-ruby-setup-keybindings "inf-ruby" "" t)
+;(autoload 'inf-ruby-minor-mode "inf-ruby" "Run an inferior Ruby process" t)
+;(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+(add-hook 'inf-ruby-mode-hook 'rbenv-patch)
+(add-hook 'after-init-hook 'inf-ruby-switch-setup)
 
-(eval-after-load 'ruby-mode
-  '(add-hook 'ruby-mode-hook 'inf-ruby-setup-keybindings))
+(defun rbenv-patch ()
+  (setq irbparams " --inf-ruby-mode -r irb/completion")
+  (setq irbpath (rbenv--expand-path "shims" "irb"))
+  (setq irb (concat irbpath irbparams))
+  (add-to-list 'inf-ruby-implementations (cons "ruby" irb))
+  (inf-ruby-minor-mode t)
+  (inf-ruby-console-auto)
+  )
+
+
+
+(global-set-key (kbd "C-c r r") 'inf-ruby)
+;; The default indentation system attempts to align the arguments of a function
+;; with the opening bracket vertically.
+;;
+;; While this is subjective, but if you, like me, find this behaviour erratic
+;; the following will make emacs indent code inside parenthesis similar to
+;;  elsewhere.
+(setq ruby-deep-indent-paren nil)
+
+(add-hook 'ruby-mode-hook 'projectile-on)
+
+;; Robe mode
+(require 'robe)
+(add-hook 'ruby-mode-hook 'robe-mode)
+(add-hook 'robe-mode-hook 'robe-ac-setup)
+
+;; Bundler
+(require 'bundler)
+
+;; Flymake
+(require 'flymake-ruby)
+(add-hook 'ruby-mode-hook 'flymake-ruby-load)
+
 
 ;; Rinari configurations
 (setq rinari-tags-file-name "TAGS")
