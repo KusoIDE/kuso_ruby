@@ -71,25 +71,3 @@
 
 
 (add-hook 'ruby-mode-hook (lambda () (autopair-global-mode -1)))
-
-;; Power Line
-(require 'powerline)
-
-;; highlight indents
-(require 'highlight-indentation)
-;; TODO: move these to a theme
-(set-face-background 'highlight-indentation-face "#383a30")
-(set-face-background 'highlight-indentation-current-column-face "#494d38")
-(add-hook 'ruby-mode-hook 'highlight-indentation-mode)
-
-(setq powerline-arrow-shape 'arrow)   ;; the default
-(setq powerline-arrow-shape 'curve)   ;; give your mode-line curves
-(setq powerline-arrow-shape 'arrow14) ;; best for small fonts
-(custom-set-faces
- '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
- '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
-(setq powerline-color1 "grey22")
-(setq powerline-color2 "grey40")
-
-(require 'es-lib)
-(require 'es-windows)
