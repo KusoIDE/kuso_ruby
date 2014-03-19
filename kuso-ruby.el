@@ -58,9 +58,9 @@
 (add-hook 'ruby-mode-hook 'projectile-on)
 
 ;; Robe mode
-(require 'robe)
-(add-hook 'ruby-mode-hook 'robe-mode)
-(add-hook 'robe-mode-hook 'robe-ac-setup)
+;(require 'robe)
+;(add-hook 'ruby-mode-hook 'robe-mode)
+;(add-hook 'robe-mode-hook 'robe-ac-setup)
 
 ;; Bundler
 (require 'bundler)
