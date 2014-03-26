@@ -18,10 +18,15 @@
 (require 'rbenv)
 (global-rbenv-mode)
 
-;(add-hook 'ruby-mode-hook
-;     	  'global-rbenv-mode)
 
-;; Ruby mode configurations
+;; Utilities ------------------------------------------------
+;;;###autoload
+(defun insert-arrow ()
+  (interactive)
+  (delete-horizontal-space t)
+  (insert " => "))
+
+;; Ruby mode configurations --------------------------------
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
@@ -65,9 +70,26 @@
 ;; Bundler
 (require 'bundler)
 
-;; Flymake
-;(require 'flymake-ruby)
-;(add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
+(add-hook 'ruby-mode-hook (lambda ()
+                            ;; Disable autopaire
+                            (autopair-global-mode -1)
 
-(add-hook 'ruby-mode-hook (lambda () (autopair-global-mode -1)))
+                            ;; Enable flycheck
+                            (flycheck-mode t)
+
+                            ;; hs mode
+                            (hs-minor-mode t)
+                            ;; Hack autocomplete so it treat :symbole and symbole the same way
+                            (modify-syntax-entry ?: ".")
+                            (require 'inf-ruby)
+                            (require 'ruby-compilation)
+                            ))
+
+(define-key ruby-mode-map (kbd "C-.") 'insert-arrow)
+
+;; configure hs-minor-mode
+(add-to-list 'hs-special-modes-alist
+             '(ruby-mode
+               "\\(class\\|def\\|do\\|if\\)" "\\(end\\)" "#"
+               (lambda (arg) (ruby-end-of-block)) nil))
