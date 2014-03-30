@@ -53,13 +53,6 @@
   )
 
 (global-set-key (kbd "C-c r r") 'inf-ruby)
-;; The default indentation system attempts to align the arguments of a function
-;; with the opening bracket vertically.
-;;
-;; While this is subjective, but if you, like me, find this behaviour erratic
-;; the following will make emacs indent code inside parenthesis similar to
-;;  elsewhere.
-(setq ruby-deep-indent-paren nil)
 (add-hook 'ruby-mode-hook 'projectile-on)
 
 ;; Robe mode
