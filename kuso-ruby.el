@@ -77,6 +77,8 @@
                             (modify-syntax-entry ?: ".")
                             (require 'inf-ruby)
                             (require 'ruby-compilation)
+                            (require 'ruby-tools-mode)
+                            (require 'ruby-electric-mode)
                             ))
 
 (define-key ruby-mode-map (kbd "C-.") 'insert-arrow)
