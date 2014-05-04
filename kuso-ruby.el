@@ -76,7 +76,6 @@
                             ;; Hack autocomplete so it treat :symbole and symbole the same way
                             (modify-syntax-entry ?: ".")
                             (require 'inf-ruby)
-                            (require 'ruby-compilation)
                             (require 'ruby-tools-mode)
                             (require 'ruby-electric-mode)
                             ))
