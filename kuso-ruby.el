@@ -32,6 +32,7 @@
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("gemspec$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("config.ru$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("json.jbuilder$" . ruby-mode))
 
 ;; Yaml mode configurations
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
@@ -59,7 +60,6 @@
 ;(require 'robe)
 ;(add-hook 'ruby-mode-hook 'robe-mode)
 ;(add-hook 'robe-mode-hook 'robe-ac-setup)
-
 ;; Bundler
 (require 'bundler)
 
@@ -68,6 +68,9 @@
                             ;; Disable autopaire
                             (autopair-global-mode -1)
 
+                            (require 'inf-ruby)
+                            (ruby-tools-mode t)
+                            (ruby-electric-mode t)
                             ;; Enable flycheck
                             (flycheck-mode t)
 
@@ -75,9 +78,6 @@
                             (hs-minor-mode t)
                             ;; Hack autocomplete so it treat :symbole and symbole the same way
                             (modify-syntax-entry ?: ".")
-                            (require 'inf-ruby)
-                            (require 'ruby-tools-mode)
-                            (require 'ruby-electric-mode)
                             ))
 
 (define-key ruby-mode-map (kbd "C-.") 'insert-arrow)
