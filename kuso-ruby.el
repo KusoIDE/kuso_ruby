@@ -67,7 +67,7 @@
 (add-hook 'ruby-mode-hook (lambda ()
                             ;; Disable autopaire
                             (autopair-global-mode -1)
-
+                            (autopair-mode -1)
                             (require 'inf-ruby)
                             (ruby-tools-mode t)
                             (ruby-electric-mode t)
