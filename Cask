@@ -1,7 +1,8 @@
 (source gnu)
 (source melpa)
 
-(package-file "kuso-ruby")
+(package "kuso-ruby" "0.1.0" "KusoIDE Ruby plugin")
+(package-file "kuso-ruby.el")
 
 (development
  (depends-on "f")
